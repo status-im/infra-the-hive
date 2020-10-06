@@ -1,0 +1,9 @@
+.envrc
+.terraform/
+.terraform/environment
+terraform.tfstate.d/
+*.tfstate
+*.tfstate.backup
+*.retry
+
+ansible/files/*
