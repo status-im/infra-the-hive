@@ -3,8 +3,8 @@
 terraform {
   backend "consul" {
     address = "https://consul.statusim.net:8400"
-    lock    = true
-
+    /* Lock to avoid syncing issues */
+    lock = true
     /* WARNING This needs to be changed for every repo. */
     path      = "terraform/thehive/"
     ca_file   = "ansible/files/consul-ca.crt"
