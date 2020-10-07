@@ -22,3 +22,23 @@
 - name: swap-file
   src: git@github.com:status-im/infra-role-swap-file.git
   scm: git
+
+- name: open-ports
+  src: git@github.com:status-im/infra-role-open-ports.git
+  scm: git
+
+- name: oauth-proxy
+  src: git@github.com:status-im/infra-role-oauth-proxy.git
+  scm: git
+
+- name: cassandra
+  src: git@github.com:status-im/infra-role-cassandra.git
+  scm: git
+
+- name: elasticsearch
+  src: git@github.com:status-im/infra-role-elasticsearch.git
+  scm: git
+
+- name: elasticsearch-hq
+  src: git@github.com:status-im/infra-role-elasticsearch-hq.git
+  scm: git
