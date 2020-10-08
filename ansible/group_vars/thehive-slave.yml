@@ -1,0 +1,17 @@
+---
+# 8GB to match RAM
+swap_file_size_mb: 8192
+
+# Open Nginx Ports
+open_ports_comment: 'HTTP & HTTPS'
+open_ports_list:
+  - { port: 80, protocol: 'tcp' }
+  - { port: 443, protocol: 'tcp' }
+
+# Cassandra cluster for storing metrics
+cassandra_cluster_name: 'thp'
+cassandra_db_users:
+  - user: '{{ lookup("passwordstore", "services/TheHive/Cassandra/user") }}'
+    pass: '{{ lookup("passwordstore", "services/TheHive/Cassandra/pass") }}'
+
+consul_catalog_url: 'http://localhost:8500/v1/catalog'
