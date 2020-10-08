@@ -1,0 +1,7 @@
+---
+- name: Configure The Hive backend
+  hosts: thehive-slave
+  roles:
+    - { role: swap-file,        tags: swap-file }
+    - { role: cassandra,        tags: cassandra }
+    - { role: open-ports,       tags: open-ports }
