@@ -24,4 +24,7 @@ module "hive_slave" {
   root_vol_size = 30
   data_vol_size = 30
   domain        = var.hosts_domain
+
+  /* ElasticSearch HQ Web UI */
+  open_tcp_ports = [ "80", "443" ]
 }

@@ -7,5 +7,6 @@
     - { role: elasticsearch,    tags: elasticsearch }
     - { role: elasticsearch-hq, tags: elasticsearch-hq }
     - { role: oauth-proxy,      tags: oauth-proxy }
+    - { role: origin-certs,     tags: origin-certs }
     - { role: nginx,            tags: nginx }
     - { role: open-ports,       tags: open-ports }
