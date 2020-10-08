@@ -4,4 +4,8 @@
   roles:
     - { role: swap-file,        tags: swap-file }
     - { role: cassandra,        tags: cassandra }
+    - { role: elasticsearch,    tags: elasticsearch }
+    - { role: elasticsearch-hq, tags: elasticsearch-hq }
+    - { role: oauth-proxy,      tags: oauth-proxy }
+    - { role: nginx,            tags: nginx }
     - { role: open-ports,       tags: open-ports }

@@ -15,3 +15,46 @@ cassandra_db_users:
     pass: '{{ lookup("passwordstore", "services/TheHive/Cassandra/pass") }}'
 
 consul_catalog_url: 'http://localhost:8500/v1/catalog'
+
+# ElasticSearch Cluster
+es_cluster_name: 'the-hive'
+es_cont_name: elasticsearch
+es_api_port: 9200
+es_node_port: 9300
+
+# WARNING: This works only if playbook is ran for whole group
+es_master_nodes: |
+  {{ ansible_play_hosts
+   | map('extract', hostvars)
+   | list
+   | json_query(
+   '[].{
+     name: hostname,
+     addr: ansible_local.tinc.vpn_ip,
+     port: to_string(es_node_port)
+   }') }}
+
+# Since Logstash stores 1 index per day this is fine
+# See: https://www.elastic.co/blog/how-many-shards-should-i-have-in-my-elasticsearch-cluster
+es_number_of_replicas: 1
+es_number_of_shards: 3
+
+# JVM memory settings
+es_jvm_mem_ratio: 0.5
+es_jvm_mem: '{{ (ansible_memtotal_mb * es_jvm_mem_ratio) | round(0, "floor") }}'
+es_jvm_min_heap: '{{ es_jvm_mem | int }}m'
+es_jvm_max_heap: '{{ es_jvm_mem | int }}m'
+
+# ElasticHQ connects to the local container
+es_hq_lb_cont_name: '{{ es_cont_name }}'
+
+# oauth access
+oauth_domain: 'thehive-es.status.im'
+oauth_cont_name: '{{ es_hq_cont_name }}-oauth'
+oauth_upstream_cont: '{{ es_hq_cont_name }}'
+oauth_upstream_port: '{{ es_hq_cont_port }}'
+oauth_public_port: 443
+oauth_local_port: 8090
+oauth_cookie_secret: '{{ lookup("passwordstore", "services/cookie-secret") }}'
+oauth_id: '{{ lookup("passwordstore", "services/TheHive/ElasticSearch/HQ/oauth-id") }}'
+oauth_secret: '{{ lookup("passwordstore", "services/TheHive/ElasticSearch/HQ/oauth-secret") }}'
