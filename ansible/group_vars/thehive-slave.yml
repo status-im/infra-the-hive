@@ -2,6 +2,10 @@
 # 8GB to match RAM
 swap_file_size_mb: 8192
 
+# Data volume mount point
+bootstrap__extra_volume_path: '/data'
+bootstrap__extra_volume_bind_path: '/docker'
+
 # Open Nginx Ports
 open_ports_comment: 'HTTP & HTTPS'
 open_ports_list:
@@ -10,6 +14,7 @@ open_ports_list:
 
 # Cassandra cluster for storing metrics
 cassandra_cluster_name: 'thp'
+cassandra_data_dir: '/data/cassandra'
 cassandra_db_users:
   - user: '{{ lookup("passwordstore", "services/TheHive/Cassandra/user") }}'
     pass: '{{ lookup("passwordstore", "services/TheHive/Cassandra/pass") }}'
