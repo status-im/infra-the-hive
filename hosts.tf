@@ -6,7 +6,8 @@ module "hive_master" {
   env           = "thehive"
   group         = "thehive-master"
   type          = "n1-standard-2"
-  root_vol_size = 40
+  root_vol_size = 30
+  data_vol_size = 30
   domain        = var.hosts_domain
 
   /* Application Web UI */
