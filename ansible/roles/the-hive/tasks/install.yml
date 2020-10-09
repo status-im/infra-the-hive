@@ -1,0 +1,39 @@
+---
+- name: Create service user
+  user:
+    name: '{{ the_hive_service_user }}'
+    group: '{{ the_hive_service_user }}'
+
+- name: Check if already installed
+  stat:
+    path: '/opt/thehive4-4.0.0-1'
+  register: the_hive_symlink
+
+- name: Download binary release zip
+  get_url:
+    url: '{{ the_hive_binary_url }}'
+    dest: '/tmp/thehive4.zip'
+    checksum: 'md5:{{ the_hive_binary_md5 }}'
+    mode: 0644
+  when: not the_hive_symlink.stat.exists
+
+- name: Unpack binary release zip
+  unarchive:
+    src: '/tmp/thehive4.zip'
+    dest: '/opt'
+    group: '{{ the_hive_service_user }}'
+    mode: 0755
+    remote_src: true
+    creates: /opt/thehive4-4.0.0-1/bin/thehive
+  when: not the_hive_symlink.stat.exists
+
+- name: Symlinks specific version
+  file:
+    src: '/opt/thehive4-4.0.0-1'
+    dest: '{{ the_hive_install_path }}'
+    state: 'link'
+
+- name: Remove binary release zip
+  file:
+    path: '/tmp/thehive4.zip'
+    state: absent

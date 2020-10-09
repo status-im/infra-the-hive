@@ -1,0 +1,34 @@
+---
+- name: Create service directories
+  file:
+    path: '{{ item }}'
+    state: directory
+    owner: '{{ the_hive_service_user }}'
+    group: 'adm'
+    mode: 0750
+  with_items:
+    - '{{ the_hive_data_path }}'
+    - '{{ the_hive_logs_path }}'
+    - '{{ the_hive_files_path }}'
+
+- name: Create systemd Unit file
+  template:
+    src: 'thehive.service.j2'
+    dest: '/lib/systemd/system/{{ the_hive_service_name }}.service'
+    mode: 0644
+  register: the_hive_service_file
+
+- name: Reload Systemctl
+  command: systemctl daemon-reload
+  when: the_hive_service_file.changed
+
+- name: (Re)Start Service
+  service:
+    name: '{{ the_hive_service_name }}.service'
+    state: restarted
+    enabled: true
+  when: >
+    the_hive_service_file.changed or
+    the_hive_config_files.results[0].changed or
+    the_hive_config_files.results[1].changed or
+    the_hive_config_files.results[2].changed

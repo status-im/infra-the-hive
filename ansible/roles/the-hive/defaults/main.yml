@@ -1,0 +1,36 @@
+---
+# Service
+the_hive_service_name: 'thehive'
+the_hive_service_user: 'thehive'
+
+# Ports
+the_hive_port: 9000
+
+# Paths
+the_hive_install_path: '/opt/thehive'
+the_hive_conf_path: '/etc/thehive'
+the_hive_data_path: '/var/lib/thehive'
+the_hive_logs_path: '/var/log/thehive'
+the_hive_files_path: '{{ the_hive_data_path }}/files'
+
+# Logs: normal/verbose/debug
+the_hive_logs_level: 'verbose'
+
+# Binary release
+the_hive_binary_url: 'https://download.thehive-project.org/thehive4-latest.zip'
+the_hive_binary_md5: 'e7fe6b258dc59352b57630a7c060fdc0'
+
+# Secret for cookies and built-in encryption
+the_hive_http_secret: ~
+
+# First user created on service creation
+the_hive_admin_user: 'admin'
+the_hive_admin_pass: ~
+
+# Cassandra database nodes and auth
+the_hive_db_user: ~
+the_hive_db_pass: ~
+the_hive_db_name: 'thp'
+the_hive_db_keyspace: 'thehive'
+the_hive_db_hosts: []
+#  - { name: "node-01", addr: "10.1.2.3", port: 1234 }

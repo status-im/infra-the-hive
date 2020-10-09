@@ -1,0 +1,21 @@
+---
+- name: 'Create container folders'
+  file:
+    path: '{{ the_hive_conf_path }}'
+    state: directory
+    owner: '{{ the_hive_service_user }}'
+    group: 'adm'
+    mode: 0750
+
+- name: Create app config files
+  template:
+    src: '{{ item }}.j2'
+    dest: '{{ the_hive_conf_path }}/{{ item }}'
+    owner: '{{ the_hive_service_user }}'
+    group: docker
+    mode: 0640
+  with_items:
+    - 'application.conf'
+    - 'secret.conf'
+    - 'logback.xml'
+  register: the_hive_config_files

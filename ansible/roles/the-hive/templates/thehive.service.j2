@@ -1,0 +1,42 @@
+[Unit]
+Description=Scalable, Open Source and Free Security Incident Response Solutions
+Documentation=https://thehive-project.org
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+WorkingDirectory={{ the_hive_install_path }}
+
+User={{ the_hive_service_user }}
+Group={{ the_hive_service_user }}
+
+ExecStart=/opt/thehive/bin/thehive \
+    -Dconfig.file={{ the_hive_conf_path }}/application.conf \
+    -Dlogger.file={{ the_hive_conf_path }}/logback.xml \
+{% if the_hive_logs_level == 'verbose' %}
+    -verbose \
+{% elif the_hive_logs_level == 'debug' %}
+    -debug \
+{% endif %}
+    -Dpidfile.path=/dev/null
+
+StandardOutput=null
+StandardError=null
+
+# Specifies the maximum file descriptor number that can be opened by this process
+LimitNOFILE=65536
+
+# Disable timeout logic and wait until process is stopped
+TimeoutStopSec=0
+
+# SIGTERM signal is used to stop the Java process
+KillSignal=SIGTERM
+
+# Java process is never killed
+SendSIGKILL=no
+
+# When a JVM receives a SIGTERM signal it exits with code 143
+SuccessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target

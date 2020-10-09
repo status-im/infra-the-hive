@@ -1,0 +1,28 @@
+# Docs: https://github.com/TheHive-Project/TheHiveDocs
+
+# Include Play secret key
+include "/etc/thehive/secret.conf"
+
+# Cassandra Database configuration
+db.janusgraph {
+  storage {
+    backend: cql
+    username: "{{ the_hive_db_user | mandatory }}"
+    password: "{{ the_hive_db_pass | mandatory }}" 
+    hostname: [
+{% for host in the_hive_db_hosts %}
+        "{{ host.addr | mandatory }}:{{ host.port | mandatory }}", # {{ host.name | mandatory }}
+{% endfor %}
+    ]
+    cql {
+      cluster-name: "{{ the_hive_db_name | mandatory }}"
+      keyspace: "{{ the_hive_db_keyspace | mandatory }}"
+    }
+  }
+}
+
+# Attachment storage configuration
+storage {
+  provider: localfs
+  localfs.directory: "{{ the_hive_data_path }}"
+}
