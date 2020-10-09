@@ -23,10 +23,6 @@ the_hive_binary_md5: 'e7fe6b258dc59352b57630a7c060fdc0'
 # Secret for cookies and built-in encryption
 the_hive_http_secret: ~
 
-# First user created on service creation
-the_hive_admin_user: 'admin'
-the_hive_admin_pass: ~
-
 # Cassandra database nodes and auth
 the_hive_db_user: ~
 the_hive_db_pass: ~

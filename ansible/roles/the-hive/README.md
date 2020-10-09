@@ -9,9 +9,6 @@ The most basic configuration would include:
 # Application HTTP secret
 the_hive_app_http_secret: 'very-long-random-string'
 
-# Dirst admin user auth
-the_hive_admin_pass: 'secret-admin-password'
-
 # Cassandra cluster details
 the_hive_db_user: 'thehive'
 the_hive_db_pass: 'super-secret-password'
@@ -28,3 +25,7 @@ the_hive_db_hosts:
 The service depends on a [Cassandra](https://cassandra.apache.org/) cluster for state storage.
 
 It also uses the local filesystem to store any files uploaded by the users.
+
+# Login
+
+After installation you can login using the default account: `admin@thehive.local`/`secret`

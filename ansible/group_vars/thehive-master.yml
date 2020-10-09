@@ -7,8 +7,6 @@ the_hive_port: 9000
 
 # TheHive application secret
 the_hive_app_http_secret: '{{ lookup("passwordstore", "services/TheHive/App/http-secret") }}'
-# TheHive first user auth
-the_hive_admin_pass: '{{ lookup("passwordstore", "services/TheHive/App/admin-pass") }}'
 
 # Paths
 the_hive_conf_path: '/data/thehive/conf'
