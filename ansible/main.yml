@@ -10,3 +10,23 @@
     - { role: origin-certs,     tags: origin-certs }
     - { role: nginx,            tags: nginx }
     - { role: open-ports,       tags: open-ports }
+
+- name: Configure The Hive frontend
+  hosts: thehive-master
+  pre_tasks:
+    - name: Fetch available Cassandra nodes
+      tags: the-hive
+      uri:
+        url: '{{ consul_catalog_url }}/service/cassandra?service-meta={{ the_hive_db_name }}'
+      register: cassandra_services
+
+    - name: Extract Cassandra hostnames
+      tags: the-hive
+      set_fact:
+        the_hive_db_hosts: |
+          {{ cassandra_services.json
+            | json_query('[].{ name: Node, addr: ServiceAddress, port: ServicePort }')
+            | list }}
+  roles:
+    - { role: swap-file,        tags: swap-file }
+    - { role: the-hive,         tags: the-hive }

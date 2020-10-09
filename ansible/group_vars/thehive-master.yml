@@ -1,0 +1,17 @@
+---
+# 8GB to match RAM
+swap_file_size_mb: 8192
+
+# TheHive application secret
+the_hive_app_http_secret: '{{ lookup("passwordstore", "services/TheHive/App/http-secret") }}'
+# TheHive first user auth
+the_hive_admin_pass: '{{ lookup("passwordstore", "services/TheHive/App/admin-pass") }}'
+
+# Paths
+the_hive_conf_path: '/data/thehive/conf'
+the_hive_data_path: '/data/thehive/data'
+the_hive_logs_path: '/data/thehive/logs'
+
+# Cassandra auth
+the_hive_db_user: '{{ lookup("passwordstore", "services/TheHive/Cassandra/user") }}'
+the_hive_db_pass: '{{ lookup("passwordstore", "services/TheHive/Cassandra/pass") }}'
