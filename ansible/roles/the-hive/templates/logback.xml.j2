@@ -34,7 +34,7 @@
         <appender-ref ref="STDOUT"/>
     </appender>
 
-    <logger name="org.thp" level="INFO"/>
+    <logger name="org.thp" level="{{ the_hive_logs_level | upper }}"/>
 
     <root level="INFO">
         <appender-ref ref="ASYNCFILE"/>

@@ -13,8 +13,8 @@ the_hive_data_path: '/var/lib/thehive'
 the_hive_logs_path: '/var/log/thehive'
 the_hive_files_path: '{{ the_hive_data_path }}/files'
 
-# Logs: normal/verbose/debug
-the_hive_logs_level: 'verbose'
+# Logs: error/warning/info/verbose/debug
+the_hive_logs_level: 'info'
 
 # Binary release
 the_hive_binary_url: 'https://download.thehive-project.org/thehive4-latest.zip'
