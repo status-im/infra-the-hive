@@ -30,3 +30,6 @@
   roles:
     - { role: swap-file,        tags: swap-file }
     - { role: the-hive,         tags: the-hive }
+    - { role: origin-certs,     tags: origin-certs }
+    - { role: nginx,            tags: nginx }
+    - { role: open-ports,       tags: open-ports }

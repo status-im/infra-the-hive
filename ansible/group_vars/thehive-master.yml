@@ -2,6 +2,9 @@
 # 8GB to match RAM
 swap_file_size_mb: 8192
 
+# Ports
+the_hive_port: 9000
+
 # TheHive application secret
 the_hive_app_http_secret: '{{ lookup("passwordstore", "services/TheHive/App/http-secret") }}'
 # TheHive first user auth
@@ -15,3 +18,31 @@ the_hive_logs_path: '/data/thehive/logs'
 # Cassandra auth
 the_hive_db_user: '{{ lookup("passwordstore", "services/TheHive/Cassandra/user") }}'
 the_hive_db_pass: '{{ lookup("passwordstore", "services/TheHive/Cassandra/pass") }}'
+
+# Open Nginx Ports
+open_ports_comment: 'HTTP & HTTPS'
+open_ports_list:
+  - { port: 80, protocol: 'tcp' }
+  - { port: 443, protocol: 'tcp' }
+
+# The Hive UI
+the_hive_domain: 'hive.status.im'
+
+# Proxy for The Hive UI
+nginx_sites:
+  the_hive_http:
+    - listen 80
+    - server_name {{ the_hive_domain }}
+    - return 302 https://$server_name$request_uri
+
+  the_hive_https:
+    - listen 443 ssl
+    - server_name {{ the_hive_domain }}
+
+    - ssl_certificate     /certs/status.im/origin.crt
+    - ssl_certificate_key /certs/status.im/origin.key
+
+    - location / {
+        proxy_set_header Host $host;
+        proxy_pass http://127.0.0.1:{{ the_hive_port }}/;
+      }
