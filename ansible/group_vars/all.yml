@@ -16,3 +16,6 @@ bootstrap__root_pass: '{{lookup("passwordstore", "hosts/admin-pass")}}'
 
 # Consul Encryption
 consul_encryption_key: '{{lookup("passwordstore", "services/consul/encryption-key")}}'
+
+# Consul Catalog API
+consul_catalog_url: 'http://localhost:8500/v1/catalog'
