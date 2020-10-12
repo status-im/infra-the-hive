@@ -1,0 +1,29 @@
+---
+- name: Create service logs dir
+  file:
+    path: '{{ cortex_logs_path }}'
+    state: directory
+    owner: '{{ cortex_service_user }}'
+    group: 'adm'
+    mode: 0750
+
+- name: Create systemd Unit file
+  template:
+    src: 'cortex.service.j2'
+    dest: '/lib/systemd/system/{{ cortex_service_name }}.service'
+    mode: 0644
+  register: cortex_service_file
+
+- name: Reload Systemctl
+  command: systemctl daemon-reload
+  when: cortex_service_file.changed
+
+- name: (Re)Start Service
+  service:
+    name: '{{ cortex_service_name }}.service'
+    state: restarted
+    enabled: true
+  when: >
+    cortex_service_file.changed or
+    cortex_config_files.results[0].changed or
+    cortex_config_files.results[1].changed

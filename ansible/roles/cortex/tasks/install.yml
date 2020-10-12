@@ -1,0 +1,51 @@
+---
+- name: Create service group
+  group:
+    name: '{{ cortex_service_user }}'
+
+- name: Create service user
+  user:
+    name: '{{ cortex_service_user }}'
+    group: '{{ cortex_service_user }}'
+    # For running jobs
+    groups: 'docker'
+
+- name: Check if already installed
+  stat:
+    path: '/opt/cortex-{{ cortex_version }}'
+  register: cortex_symlink
+
+- name: Download binary release zip
+  get_url:
+    url: '{{ cortex_binary_url }}'
+    dest: '/tmp/cortex.zip'
+    checksum: 'md5:{{ cortex_binary_md5 }}'
+    mode: 0644
+  when: not cortex_symlink.stat.exists
+
+- name: Unpack binary release zip
+  unarchive:
+    src: '/tmp/cortex.zip'
+    dest: '/opt'
+    group: '{{ cortex_service_user }}'
+    mode: 0755
+    remote_src: true
+    creates: /opt/cortex-{{ cortex_version }}/bin/thehive
+  when: not cortex_symlink.stat.exists
+
+- name: Symlinks specific version
+  file:
+    src: '/opt/cortex-{{ cortex_version }}'
+    dest: '{{ cortex_install_path }}'
+    state: 'link'
+
+- name: Remove binary release zip
+  file:
+    path: '/tmp/cortex.zip'
+    state: absent
+
+# For communication between Cortex and the analyzers/responders
+# See: https://github.com/TheHive-Project/CortexDocs/blob/3.0/admin/cortex3.md
+- name: Install Python dependencies
+  pip:
+    name: cortexutils

@@ -1,0 +1,39 @@
+[Unit]
+Description=cortex
+Documentation=https://thehive-project.org
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+WorkingDirectory={{ cortex_install_path }}
+
+User={{ cortex_service_user }}
+Group={{ cortex_service_user }}
+
+ExecStart=/opt/cortex/bin/cortex \
+    -Dconfig.file={{ cortex_conf_path }}/application.conf \
+    -Dlogger.file={{ cortex_conf_path }}/logback.xml \
+{% if cortex_logs_level == 'verbose' %}
+    -verbose \
+{% elif cortex_logs_level == 'debug' %}
+    -debug \
+{% endif %}
+    -Dpidfile.path=/dev/null
+
+# Specifies the maximum file descriptor number that can be opened by this process
+LimitNOFILE=65536
+
+# Disable timeout logic and wait until process is stopped
+TimeoutStopSec=0
+
+# SIGTERM signal is used to stop the Java process
+KillSignal=SIGTERM
+
+# Java process is never killed
+SendSIGKILL=no
+
+# When a JVM receives a SIGTERM signal it exits with code 143
+SuccessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target

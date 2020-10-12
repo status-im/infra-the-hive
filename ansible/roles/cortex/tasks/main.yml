@@ -1,0 +1,12 @@
+---
+- name: Install Cortex
+  import_tasks: install.yml
+
+- name: Create config files
+  import_tasks: config.yml
+
+- name: Create systemd service
+  import_tasks: service.yml
+
+- name: Create consul definition
+  import_tasks: consul.yml

@@ -1,0 +1,55 @@
+# The secret key is used to secure cryptographic functions.
+play.http.secret.key="{{ cortex_http_secret | mandatory }}"
+
+# ElasticSearch
+search {
+  uri = "http://{% for node in cortex_search_nodes %}{{ node.addr }}:{{ node.port }}{% if not loop.last %},{% endif %}{% endfor %}"
+  index = "{{ cortex_search_index }}"
+  nbshards = 3
+  nbreplicas = 1
+}
+
+# Cache
+cache.job = 10 minutes
+
+# Authentication
+auth {
+    provider = [local]
+}
+
+# ANALYZERS
+analyzer {
+  # url can be point to:
+  # - directory where analyzers are installed
+  # - json file containing the list of analyzer descriptions
+  urls = [
+    "https://dl.bintray.com/thehive-project/cortexneurons/analyzers.json"
+  ]
+
+  # Sane defaults. Do not change unless you know what you are doing.
+  fork-join-executor {
+    # Min number of threads available for analysis.
+    parallelism-min = 2
+    # Parallelism (threads) ... ceil(available processors * factor).
+    parallelism-factor = 2.0
+    # Max number of threads available for analysis.
+    parallelism-max = 4
+  }
+}
+
+# RESPONDERS
+responder {
+  urls = [
+    "https://dl.bintray.com/thehive-project/cortexneurons/responders.json"
+  ]
+
+  # Sane defaults. Do not change unless you know what you are doing.
+  fork-join-executor {
+    # Min number of threads available for analysis.
+    parallelism-min = 2
+    # Parallelism (threads) ... ceil(available processors * factor).
+    parallelism-factor = 2.0
+    # Max number of threads available for analysis.
+    parallelism-max = 4
+  }
+}

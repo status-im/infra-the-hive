@@ -1,0 +1,27 @@
+---
+cortex_service_name: 'cortex'
+cortex_service_user: 'cortex'
+
+# Download
+cortex_version: '3.0.1-1'
+cortex_binary_url: 'https://download.thehive-project.org/cortex-{{ cortex_version }}.zip'
+cortex_binary_md5: '277ae4b0e38b5376adfac713afee2f5c'
+
+# Paths
+cortex_install_path: '/opt/{{ cortex_service_name }}'
+cortex_conf_path: '/etc/cortex'
+cortex_logs_path: '/var/log/cortex'
+
+# Logging level: info/verbose/debug
+cortex_logs_level: 'info'
+
+# Ports
+cortex_port: 9001
+
+# ElasticSearch cluster nodes
+cortex_search_index: 'cortex'
+cortex_search_nodes: []
+#  - { name: "node-01", addr: "10.1.2.3", port: 1234 }
+
+# Secret for cookies and built-in encryption
+cortex_http_secret: ~

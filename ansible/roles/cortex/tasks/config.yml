@@ -1,0 +1,20 @@
+---
+- name: 'Create container folders'
+  file:
+    path: '{{ cortex_conf_path }}'
+    state: directory
+    owner: '{{ cortex_service_user }}'
+    group: 'adm'
+    mode: 0750
+
+- name: Create app config files
+  template:
+    src: '{{ item }}.j2'
+    dest: '{{ cortex_conf_path }}/{{ item }}'
+    owner: '{{ cortex_service_user }}'
+    group: docker
+    mode: 0640
+  with_items:
+    - 'application.conf'
+    - 'logback.xml'
+  register: cortex_config_files
