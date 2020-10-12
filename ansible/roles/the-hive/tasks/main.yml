@@ -1,6 +1,6 @@
 ---
-#- name: Install The Hive
-#  import_tasks: install.yml
+- name: Install The Hive
+  import_tasks: install.yml
 
 - name: Create config files
   import_tasks: config.yml

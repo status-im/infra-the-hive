@@ -19,7 +19,8 @@ the_hive_files_path: '{{ the_hive_data_path }}/files'
 the_hive_logs_level: 'info'
 
 # Binary release
-the_hive_binary_url: 'https://download.thehive-project.org/thehive4-latest.zip'
+the_hive_version: '4.0.0-1'
+the_hive_binary_url: 'https://download.thehive-project.org/thehive4-{{ the_hive_version }}.zip'
 the_hive_binary_md5: 'e7fe6b258dc59352b57630a7c060fdc0'
 
 # Secret for cookies and built-in encryption

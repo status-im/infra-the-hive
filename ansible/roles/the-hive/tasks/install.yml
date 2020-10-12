@@ -6,7 +6,7 @@
 
 - name: Check if already installed
   stat:
-    path: '/opt/thehive4-4.0.0-1'
+    path: '/opt/thehive4-{{ the_hive_version }}'
   register: the_hive_symlink
 
 - name: Download binary release zip
@@ -24,12 +24,12 @@
     group: '{{ the_hive_service_user }}'
     mode: 0755
     remote_src: true
-    creates: /opt/thehive4-4.0.0-1/bin/thehive
+    creates: /opt/thehive4-{{ the_hive_version }}/bin/thehive
   when: not the_hive_symlink.stat.exists
 
 - name: Symlinks specific version
   file:
-    src: '/opt/thehive4-4.0.0-1'
+    src: '/opt/thehive4-{{ the_hive_version }}'
     dest: '{{ the_hive_install_path }}'
     state: 'link'
 
