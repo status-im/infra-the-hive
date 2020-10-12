@@ -1,4 +1,8 @@
 ---
+- name: Create service group
+  group:
+    name: '{{ the_hive_service_user }}'
+
 - name: Create service user
   user:
     name: '{{ the_hive_service_user }}'
