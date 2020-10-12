@@ -6,6 +6,8 @@ This role configures [The Hive](https://thehive-project.org/) - an Open Source s
 
 The most basic configuration would include:
 ```yaml
+the_hive_domain: 'the-hive.example.org'
+
 # Application HTTP secret
 the_hive_app_http_secret: 'very-long-random-string'
 
@@ -18,6 +20,16 @@ the_hive_db_hosts:
   - { name: "node-01", addr: "10.1.2.1", port: 1234 }
   - { name: "node-02", addr: "10.1.2.2", port: 1234 }
   - { name: "node-03", addr: "10.1.2.3", port: 1234 }
+```
+
+# OAuth
+
+Optionally you can enable user autnetication via GitHub OAuth:
+```yaml
+# GitHub OAuth details
+the_hive_oauth_client_id: 'asdasdasdasdasdasdasda'
+the_hive_oauth_client_secret: '1231231231231231231231232131231'
+the_hive_oauth_org_name: 'my-org'
 ```
 
 # Details

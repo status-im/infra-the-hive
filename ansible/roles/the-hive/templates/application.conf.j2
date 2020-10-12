@@ -26,3 +26,34 @@ storage {
   provider: localfs
   localfs.directory: "{{ the_hive_data_path }}"
 }
+
+# Authentication configuration
+auth {
+  providers: [
+    {name: session}
+    {name: basic, realm: thehive}
+    {name: local}
+    {name: key}
+{% if the_hive_oauth_client_id is defined %}
+    {
+      name: oauth2
+      clientId: "{{ the_hive_oauth_client_id | mandatory }}"
+      clientSecret: "{{ the_hive_oauth_client_secret | mandatory }}"
+      userOrganisation: "{{ the_hive_oauth_org_name | mandatory }}"
+      redirectUri: "https://{{ the_hive_domain | mandatory }}/api/ssoLogin"
+      responseType: code
+      grantType: "authorization_code"
+      authorizationUrl: "https://github.com/login/oauth/authorize"
+      authorizationHeader: "token"
+      tokenUrl: "https://github.com/login/oauth/access_token"
+      userUrl: "https://api.github.com/user"
+      scope: ["user"]
+      userIdField: "email" 
+    }
+{% endif %}
+  ]
+  # The format of logins must be valid email address format.
+  # If the provided login doesn't contain `@` the following 
+  # domain is automatically appended.
+  defaultUserDomain: "{{ the_hive_domain | mandatory }}"
+}

@@ -1,4 +1,6 @@
 ---
+the_hive_domain: ~
+
 # Service
 the_hive_service_name: 'thehive'
 the_hive_service_user: 'thehive'
@@ -22,6 +24,11 @@ the_hive_binary_md5: 'e7fe6b258dc59352b57630a7c060fdc0'
 
 # Secret for cookies and built-in encryption
 the_hive_http_secret: ~
+
+# GitHub OAuth details
+the_hive_oauth_client_id: ~
+the_hive_oauth_client_secret: ~
+the_hive_oauth_org_name: ~
 
 # Cassandra database nodes and auth
 the_hive_db_user: ~

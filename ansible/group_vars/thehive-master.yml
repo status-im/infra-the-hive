@@ -13,6 +13,11 @@ the_hive_conf_path: '/data/thehive/conf'
 the_hive_data_path: '/data/thehive/data'
 the_hive_logs_path: '/data/thehive/logs'
 
+# GitHub OAuth
+the_hive_oauth_client_id: '{{ lookup("passwordstore", "services/TheHive/OAuth/client-id") }}'
+the_hive_oauth_client_secret: '{{ lookup("passwordstore", "services/TheHive/OAuth/client-secret") }}'
+the_hive_oauth_org_name: 'status-im'
+
 # Cassandra auth
 the_hive_db_user: '{{ lookup("passwordstore", "services/TheHive/Cassandra/user") }}'
 the_hive_db_pass: '{{ lookup("passwordstore", "services/TheHive/Cassandra/pass") }}'
