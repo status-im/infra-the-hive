@@ -4,6 +4,9 @@ cont_state: started
 cont_recreate: false
 cont_restart: false
 
+# 8GB to match RAM
+swap_file_size_mb: 8192
+
 # CloudFlare Origin certificates
 origin_certs:
   - domain: 'status.im'

@@ -1,7 +1,4 @@
 ---
-# 8GB to match RAM
-swap_file_size_mb: 8192
-
 # Open Nginx Ports
 open_ports_comment: 'HTTP & HTTPS'
 open_ports_list:
