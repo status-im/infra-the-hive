@@ -1,4 +1,29 @@
 ---
+# Cortex -----------------------------------------------------------------------
+
+# Ports
+cortex_port: 9001
+
+# Paths
+cortex_conf_path: '/data/cortex/conf'
+cortex_logs_path: '/data/cortex/logs'
+
+# Cortex application secret
+cortex_http_secret: '{{ lookup("passwordstore", "services/Cortex/App/http-secret") }}'
+
+# ElasticSearch cluster
+cortex_search_cluster_name: 'cortex'
+# Fetched in pre_tasks
+cortex_search_nodes: |
+  {{ elasticsearch_services.json
+    | json_query('[].{ name: Node, addr: ServiceAddress, port: ServicePort }')
+    | list }}
+
+# The Hive ---------------------------------------------------------------------
+
+# The Hive UI
+the_hive_domain: 'hive.status.im'
+
 # Ports
 the_hive_port: 9000
 
@@ -25,14 +50,15 @@ the_hive_db_hosts: |
     | json_query('[].{ name: Node, addr: ServiceAddress, port: ServicePort }')
     | list }}
 
+# Open Ports -------------------------------------------------------------------
+
 # Open Nginx Ports
 open_ports_comment: 'HTTP & HTTPS'
 open_ports_list:
   - { port: 80, protocol: 'tcp' }
   - { port: 443, protocol: 'tcp' }
 
-# The Hive UI
-the_hive_domain: 'hive.status.im'
+# Nginx Proxy ------------------------------------------------------------------
 
 # Proxy for The Hive UI
 nginx_sites:

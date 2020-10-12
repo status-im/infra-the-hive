@@ -16,10 +16,15 @@
   pre_tasks:
     - name: Fetch available Cassandra nodes
       tags: the-hive
-      uri: url='{{ consul_catalog_url }}/service/cassandra?service-meta={{ the_hive_db_name }}'
+      uri: url='{{ consul_catalog_url }}/service/cassandra?service-meta=cluster_name:{{ es_cluster_name }}'
       register: cassandra_services
+    - name: Fetch available ElasticSearch nodes
+      tags: cortex
+      uri: url='{{ consul_catalog_url }}/service/elasticsearch?service-meta=cluster_name:{{ cortex_search_cluster_name }}'
+      register: elasticsearch_services
   roles:
     - { role: swap-file,        tags: swap-file }
+    - { role: cortex,           tags: cortex }
     - { role: the-hive,         tags: the-hive }
     - { role: origin-certs,     tags: origin-certs }
     - { role: nginx,            tags: nginx }
