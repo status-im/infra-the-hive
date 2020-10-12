@@ -13,7 +13,7 @@ cassandra_db_users:
     pass: '{{ lookup("passwordstore", "services/TheHive/Cassandra/pass") }}'
 
 # ElasticSearch Cluster
-es_cluster_name: 'the-hive'
+es_cluster_name: 'cortex'
 es_cont_name: elasticsearch
 es_api_port: 9200
 es_node_port: 9300
