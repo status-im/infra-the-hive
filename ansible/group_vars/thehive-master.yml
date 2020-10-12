@@ -22,6 +22,12 @@ the_hive_oauth_org_name: 'status-im'
 the_hive_db_user: '{{ lookup("passwordstore", "services/TheHive/Cassandra/user") }}'
 the_hive_db_pass: '{{ lookup("passwordstore", "services/TheHive/Cassandra/pass") }}'
 
+# Fetched in pre_tasks
+the_hive_db_hosts: |
+  {{ cassandra_services.json
+    | json_query('[].{ name: Node, addr: ServiceAddress, port: ServicePort }')
+    | list }}
+
 # Open Nginx Ports
 open_ports_comment: 'HTTP & HTTPS'
 open_ports_list:
