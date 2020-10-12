@@ -1,7 +1,7 @@
 # Docs: https://github.com/TheHive-Project/TheHiveDocs
 
 # Include Play secret key
-include "/etc/thehive/secret.conf"
+include "{{ the_hive_conf_path }}/secret.conf"
 
 # Cassandra Database configuration
 db.janusgraph {
