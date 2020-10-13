@@ -45,7 +45,7 @@ es_jvm_max_heap: '{{ es_jvm_mem | int }}m'
 es_hq_lb_cont_name: '{{ es_cont_name }}'
 
 # oauth access
-oauth_domain: 'thehive-es.status.im'
+oauth_domain: 'thehive-es.infra.status.im'
 oauth_cont_name: '{{ es_hq_cont_name }}-oauth'
 oauth_upstream_cont: '{{ es_hq_cont_name }}'
 oauth_upstream_port: '{{ es_hq_cont_port }}'
