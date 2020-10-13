@@ -4,7 +4,8 @@
   vars:
     consul_config_name: '{{ cortex_service_name }}'
     consul_services:
-      - name: '{{ cortex_service_name }}'
+      # We prepend 'the-hive-' because there's already Cortex in infra-hq
+      - name: 'the-hive-{{ cortex_service_name }}'
         tags: ['cortex', 'incidents', 'security']
         port: '{{ cortex_port }}'
         address: '{{ ansible_local.tinc.vpn_ip }}'
