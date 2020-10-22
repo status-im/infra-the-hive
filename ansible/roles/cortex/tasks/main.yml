@@ -5,8 +5,11 @@
 - name: Create config files
   import_tasks: config.yml
 
-- name: Create systemd service
+- name: Create ElasticSearch Index
+  import_tasks: index.yml
+
+- name: Create Systemd service
   import_tasks: service.yml
 
-- name: Create consul definition
+- name: Create Consul definition
   import_tasks: consul.yml

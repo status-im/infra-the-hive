@@ -7,6 +7,10 @@ cortex_version: '3.1.0-RC1'
 cortex_binary_url: 'https://status-misc.ams3.digitaloceanspaces.com/cortex-{{ cortex_version }}.zip'
 cortex_binary_md5: '56ca44fc059b6c094ea2605994948bcb'
 
+# Database
+# WARNING: Name changes with versions!
+cortex_index_name: 'cortex_4'
+
 # Paths
 cortex_install_path: '/opt/{{ cortex_service_name }}'
 cortex_conf_path: '/etc/cortex'

@@ -1,0 +1,20 @@
+---
+- name: Create the ElasticSearch index
+  uri:
+    url: 'http://{{ cortex_search_nodes[0].addr }}:{{ cortex_search_nodes[0].port }}/{{ cortex_index_name }}'
+    method: 'PUT'
+    return_content: true
+    status_code: [ 201, 400 ]
+  register: es_resp
+
+- name: Verify that index was creates
+  assert:
+    that: '{{ es_resp.json["acknowledged"] == true }}'
+    fail_msg: 'Failed to create ElasticSearch index: {{ cortex_index_name }}'
+  when: es_resp.status == 201
+
+- name: Verify that index already exists
+  assert:
+    that: '{{ es_resp.json["error"]["type"] == "resource_already_exists_exception" }}'
+    fail_msg: 'Failed to create ElasticSearch index: {{ cortex_index_name }}'
+  when: es_resp.status == 400
