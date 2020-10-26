@@ -8,7 +8,7 @@ cortex_conf_path: '/data/cortex/conf'
 cortex_logs_path: '/data/cortex/logs'
 
 # Cortex application secret
-cortex_http_secret: '{{ lookup("passwordstore", "services/Cortex/App/http-secret") }}'
+cortex_http_secret: '{{ lookup("passwordstore", "services/TheHive-Cortex/App/http-secret") }}'
 
 # ElasticSearch cluster
 cortex_search_cluster_name: 'cortex'
@@ -19,8 +19,8 @@ cortex_search_nodes: |
     | list }}
 
 # GitHub OAuth details
-cortex_oauth_client_id: '{{ lookup("passwordstore", "services/Cortex/OAuth/client-id") }}'
-cortex_oauth_client_secret: '{{ lookup("passwordstore", "services/Cortex/OAuth/client-secret") }}'
+cortex_oauth_client_id: '{{ lookup("passwordstore", "services/TheHive-Cortex/OAuth/client-id") }}'
+cortex_oauth_client_secret: '{{ lookup("passwordstore", "services/TheHive-Cortex/OAuth/client-secret") }}'
 cortex_oauth_org_name: 'status-im'
 
 # The Hive ---------------------------------------------------------------------
