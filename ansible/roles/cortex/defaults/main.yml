@@ -3,9 +3,9 @@ cortex_service_name: 'cortex'
 cortex_service_user: 'cortex'
 
 # Download
-cortex_version: '3.1.0-RC1'
-cortex_binary_url: 'https://status-misc.ams3.digitaloceanspaces.com/cortex-{{ cortex_version }}.zip'
-cortex_binary_md5: '56ca44fc059b6c094ea2605994948bcb'
+cortex_version: '3.1.0-1'
+cortex_binary_url: 'https://download.thehive-project.org/cortex-{{ cortex_version }}.zip'
+cortex_binary_md5: 'd60ba933de59362c1ed2a7631b2a20f9'
 
 # Database
 # WARNING: Name changes with versions!

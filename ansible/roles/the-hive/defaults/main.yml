@@ -38,3 +38,7 @@ the_hive_db_name: 'thp'
 the_hive_db_keyspace: 'thehive'
 the_hive_db_hosts: []
 #  - { name: "node-01", addr: "10.1.2.3", port: 1234 }
+
+# Cortex
+the_hive_cortex_host: ~
+the_hive_cortex_port: ~

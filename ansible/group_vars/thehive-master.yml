@@ -1,4 +1,7 @@
 ---
+# ElasticSearch Cluster
+es_cluster_name: 'cortex'
+
 # Cortex -----------------------------------------------------------------------
 cortex_domain: 'cortex.status.im'
 cortex_port: 9001
@@ -26,6 +29,8 @@ cortex_oauth_org_name: 'status-im'
 # The Hive ---------------------------------------------------------------------
 the_hive_domain: 'hive.status.im'
 the_hive_port: 9000
+the_hive_cortex_host: 'localhost'
+the_hive_cortex_host: '{{ cortex_port }}'
 
 # TheHive application secret
 the_hive_app_http_secret: '{{ lookup("passwordstore", "services/TheHive/App/http-secret") }}'
