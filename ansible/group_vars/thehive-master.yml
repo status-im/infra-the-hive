@@ -47,6 +47,12 @@ the_hive_conf_path: '/data/thehive/conf'
 the_hive_data_path: '/data/thehive/data'
 the_hive_logs_path: '/data/thehive/logs'
 
+# Cortex connection
+the_hive_cortex_host: 'localhost'
+the_hive_cortex_port: '{{ cortex_port }}'
+the_hive_cortex_user: '{{ cortex_the_hive_user }}'
+the_hive_cortex_pass: '{{ cortex_the_hive_pass }}'
+
 # GitHub OAuth
 the_hive_oauth_client_id: '{{ lookup("passwordstore", "services/TheHive/OAuth/client-id") }}'
 the_hive_oauth_client_secret: '{{ lookup("passwordstore", "services/TheHive/OAuth/client-secret") }}'

@@ -20,6 +20,12 @@ the_hive_db_hosts:
   - { name: "node-01", addr: "10.1.2.1", port: 1234 }
   - { name: "node-02", addr: "10.1.2.2", port: 1234 }
   - { name: "node-03", addr: "10.1.2.3", port: 1234 }
+
+# Cortex connection
+the_hive_cortex_host: 'localhost'
+the_hive_cortex_port: 9001
+the_hive_cortex_user: 'thehive'
+the_hive_cortex_pass: 'super-secret-password'
 ```
 
 # OAuth

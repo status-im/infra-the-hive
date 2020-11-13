@@ -42,3 +42,5 @@ the_hive_db_hosts: []
 # Cortex
 the_hive_cortex_host: ~
 the_hive_cortex_port: ~
+the_hive_cortex_user: ~
+the_hive_cortex_pass: ~

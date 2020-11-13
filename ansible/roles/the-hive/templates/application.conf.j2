@@ -27,16 +27,17 @@ db.janusgraph {
 # Enable Cortex connector
 play.modules.enabled += org.thp.thehive.connector.cortex.CortexModule
 cortex {
- servers: [
-   {
-     name: "local"
-     url: "http://{{ the_hive_cortex_host | mandatory }}:{{ the_hive_cortex_port | mandatory }}"
-     auth {
-       type: "bearer"
-       key: "***"
-     }
-   }
- ]
+  servers: [
+    {
+      name: "local"
+      url: "http://{{ the_hive_cortex_host | mandatory }}:{{ the_hive_cortex_port | mandatory }}"
+      auth {
+        type: "basic"
+        username: "{{ the_hive_cortex_user }}"
+        password: "{{ the_hive_cortex_pass }}"
+      }
+    }
+  ]
 }
 {% endif %}
 
