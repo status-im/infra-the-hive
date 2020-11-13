@@ -14,10 +14,42 @@ cache.job = 10 minutes
 
 # Authentication
 auth {
-  provider = [local]
+  provider = [
+    local,
+{% if cortex_oauth_client_id is defined %}
+    oauth2,
+{% endif %}
+  ]
   method {
     basic = true
   }
+{% if cortex_oauth_client_id is defined %}
+  sso {
+    autocreate: false
+    autoupdate: false
+    mapper: "simple"
+    attributes {
+      login: "login"
+      name: "name"
+      roles: "role"
+    }
+    defaultRoles: ["read", "analyze"]
+    defaultOrganization: "{{ cortex_org_name }}"
+  }
+  oauth2 {
+    name: oauth2
+    clientId: "{{ cortex_oauth_client_id | mandatory }}"
+    clientSecret: "{{ cortex_oauth_client_secret | mandatory }}"
+    redirectUri: "https://{{ cortex_domain | mandatory }}/api/ssoLogin"
+    responseType: code
+    grantType: "authorization_code"
+    authorizationUrl: "https://github.com/login/oauth/authorize"
+    authorizationHeader: "token"
+    tokenUrl: "https://github.com/login/oauth/access_token"
+    userUrl: "https://api.github.com/user"
+    scope: ["user"]
+  }
+{% endif %}
 }
 
 # ANALYZERS

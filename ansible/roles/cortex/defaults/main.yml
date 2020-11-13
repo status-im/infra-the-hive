@@ -1,4 +1,6 @@
 ---
+cortex_domain: ~
+
 cortex_service_name: 'cortex'
 cortex_service_user: 'cortex'
 
@@ -40,3 +42,7 @@ cortex_org_name: 'Status.im'
 # User for TheHive API access
 cortex_the_hive_user: 'thehive'
 cortex_the_hive_pass: ~
+
+# OAuth
+cortex_oauth_client_id: ~
+cortex_oauth_client_secret: ~

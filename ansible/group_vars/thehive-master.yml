@@ -31,7 +31,6 @@ cortex_search_nodes: |
 # GitHub OAuth details
 cortex_oauth_client_id: '{{ lookup("passwordstore", "services/TheHive-Cortex/OAuth/client-id") }}'
 cortex_oauth_client_secret: '{{ lookup("passwordstore", "services/TheHive-Cortex/OAuth/client-secret") }}'
-cortex_oauth_org_name: 'status-im'
 
 # The Hive ---------------------------------------------------------------------
 the_hive_domain: 'hive.status.im'
