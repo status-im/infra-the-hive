@@ -1,0 +1,51 @@
+---
+- name: Check if organization exists
+  uri:
+    url: 'http://localhost:{{ cortex_port }}/api/organization/{{ cortex_org_name }}'
+    status_code: [200, 404]
+    force_basic_auth: yes
+    user: '{{ cortex_admin_user }}'
+    password: '{{ cortex_admin_pass }}'
+  register: check_org_exists
+
+- name: Create organization for TheHive
+  uri:
+    url: 'http://localhost:{{ cortex_port }}/api/organization'
+    method: 'POST'
+    status_code: 201
+    force_basic_auth: yes
+    user: '{{ cortex_admin_user }}'
+    password: '{{ cortex_admin_pass }}'
+    body_format: 'json'
+    body:
+      name: '{{ cortex_org_name }}'
+      description: 'Status Security Incident Response'
+      status: 'Active'
+  when: check_org_exists.status == 404
+
+- name: Check if The Hive user exists
+  uri:
+    url: 'http://localhost:{{ cortex_port }}/api/user/{{ cortex_the_hive_user }}'
+    status_code: [200, 404]
+    force_basic_auth: yes
+    user: '{{ cortex_admin_user }}'
+    password: '{{ cortex_admin_pass }}'
+  register: check_thehive_user
+
+- name: Create API user for TheHive
+  uri:
+    url: 'http://localhost:{{ cortex_port }}/api/user' 
+    method: 'POST'
+    status_code: 201
+    force_basic_auth: yes
+    user: '{{ cortex_admin_user }}'
+    password: '{{ cortex_admin_pass }}'
+    body_format: 'json'
+    body:
+      name: 'The Hive API User'
+      login: '{{ cortex_the_hive_user | mandatory }}'
+      password: '{{ cortex_the_hive_pass | mandatory }}'
+      organization: '{{ cortex_org_name }}'
+      roles: ['read', 'analyze', 'orgadmin']
+  when: check_thehive_user.status == 404
+  register: cortex_the_hive_user_creation

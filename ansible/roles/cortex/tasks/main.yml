@@ -8,8 +8,11 @@
 - name: Create Systemd service
   import_tasks: service.yml
 
-- name: Run database migrations
-  import_tasks: migrate.yml
+- name: Migrations and Super Admin
+  import_tasks: setup.yml
+
+- name: Create Org and users
+  import_tasks: users.yml
 
 - name: Create Consul definition
   import_tasks: consul.yml

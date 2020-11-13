@@ -1,0 +1,43 @@
+---
+- name: Wait for API port to become available
+  wait_for:
+    port: '{{ cortex_port }}'
+    delay: 10
+    timeout: 20
+
+# This is necessary because this software for no reason whatsoever
+# does not run its migrations at startup if ES index doesn't exist.
+# There is no harm in calling this route multiple times.
+# For more details you can read this issue:
+# https://github.com/TheHive-Project/Cortex/issues/305
+- name: Trigger ES index migrations
+  uri:
+    url: 'http://localhost:{{ cortex_port }}/api/maintenance/migrate'
+    method: POST
+    status_code: 204
+
+- name: CHeck if Super Admin exists
+  uri:
+    url: 'http://localhost:{{ cortex_port }}/api/user/{{ cortex_admin_user }}'
+    status_code: [200, 404]
+    force_basic_auth: yes
+    user: '{{ cortex_admin_user }}'
+    password: '{{ cortex_admin_pass }}'
+  register: check_admin_user
+
+- name: Create Super Admin user
+  uri:
+    url: 'http://localhost:{{ cortex_port }}/api/user' 
+    method: 'POST'
+    status_code: 201
+    force_basic_auth: yes
+    user: '{{ cortex_admin_user }}'
+    password: '{{ cortex_admin_pass }}'
+    body_format: 'json'
+    body:
+      name: '{{ cortex_admin_user | mandatory }}'
+      login: '{{ cortex_admin_user | mandatory }}'
+      password: '{{ cortex_admin_pass | mandatory }}'
+      organization: 'cortex'
+      roles: ['superadmin']
+  when: check_admin_user.status == 404

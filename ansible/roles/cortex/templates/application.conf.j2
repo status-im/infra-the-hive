@@ -14,7 +14,10 @@ cache.job = 10 minutes
 
 # Authentication
 auth {
-    provider = [local]
+  provider = [local]
+  method {
+    basic = true
+  }
 }
 
 # ANALYZERS

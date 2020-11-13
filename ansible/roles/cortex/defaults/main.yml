@@ -29,3 +29,14 @@ cortex_search_nodes: []
 
 # Secret for cookies and built-in encryption
 cortex_http_secret: ~
+
+# Super Admin user
+cortex_admin_user: 'admin'
+cortex_admin_pass: ~
+
+# Organization
+cortex_org_name: 'Status.im'
+
+# User for TheHive API access
+cortex_the_hive_user: 'thehive'
+cortex_the_hive_pass: ~

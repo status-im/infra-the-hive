@@ -6,6 +6,13 @@ es_cluster_name: 'cortex'
 cortex_domain: 'cortex.status.im'
 cortex_port: 9001
 
+# Super Admin
+cortex_admin_user: 'admin'
+cortex_admin_pass: '{{ lookup("passwordstore", "services/TheHive-Cortex/admin-pass") }}'
+# TheHive API Access
+cortex_the_hive_user: 'thehive'
+cortex_the_hive_pass: '{{ lookup("passwordstore", "services/TheHive-Cortex/thehive-pass") }}'
+
 # Paths
 cortex_conf_path: '/data/cortex/conf'
 cortex_logs_path: '/data/cortex/logs'
