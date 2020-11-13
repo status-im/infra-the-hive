@@ -1,0 +1,11 @@
+---
+# This is necessary because this software for no reason whatsoever
+# does not run its migrations at startup if ES index doesn't exist.
+# There is no harm in calling this route multiple times.
+#
+# For more details you can read this issue:
+# https://github.com/TheHive-Project/Cortex/issues/305
+- name: Trigger ES index migrations
+  uri:
+    url: 'http://localhost:{{ cortex_port }}/api/maintenance/migrate'
+    method: POST
