@@ -35,8 +35,6 @@ cortex_oauth_client_secret: '{{ lookup("passwordstore", "services/TheHive-Cortex
 # The Hive ---------------------------------------------------------------------
 the_hive_domain: 'hive.status.im'
 the_hive_port: 9000
-the_hive_cortex_host: 'localhost'
-the_hive_cortex_host: '{{ cortex_port }}'
 
 # TheHive application secret
 the_hive_app_http_secret: '{{ lookup("passwordstore", "services/TheHive/App/http-secret") }}'
