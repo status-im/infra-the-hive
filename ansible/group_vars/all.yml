@@ -1,11 +1,8 @@
 ---
-# general container config
-cont_state: started
-cont_recreate: false
-cont_restart: false
-
-# 8GB to match RAM
-swap_file_size_mb: 8192
+# Root password
+bootstrap__root_pass: '{{lookup("passwordstore", "hosts/admin-pass")}}'
+# Consul encryption key
+bootstrap__consul_encryption_key: '{{lookup("passwordstore", "services/consul/encryption-key")}}'
 
 # CloudFlare Origin certificates
 origin_certs:
@@ -14,11 +11,13 @@ origin_certs:
     key: '{{lookup("passwordstore", "cloud/Cloudflare/status.im/origin.key returnall=true")}}'
     default: true
 
-# Root password
-bootstrap__root_pass: '{{lookup("passwordstore", "hosts/admin-pass")}}'
-
-# Consul Encryption
-consul_encryption_key: '{{lookup("passwordstore", "services/consul/encryption-key")}}'
+# 8GB to match RAM
+swap_file_size_mb: 8192
 
 # Consul Catalog API
 consul_catalog_url: 'http://localhost:8500/v1/catalog'
+
+# general container config
+cont_state: started
+cont_recreate: false
+cont_restart: false
