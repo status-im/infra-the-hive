@@ -1,4 +1,7 @@
 ---
+- name: Drop Docker configuration
+  import_tasks: docker_fix.yml
+
 - name: Install Cortex
   import_tasks: install.yml
 

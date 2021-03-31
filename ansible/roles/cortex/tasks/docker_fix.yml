@@ -1,0 +1,13 @@
+---
+# Cortex uses Docker to run analyzers, and our configuration -
+# specifically logging and UID remapping - breaks how they do things.
+# See: https://github.com/status-im/infra-the-hive/issues/2
+- name: Remove custom Docker configuration
+  file:
+    path: '/etc/docker/daemon.json'
+    state: 'absent'
+
+- name: Restart Docker service
+  service:
+    name: 'docker'
+    state: 'restarted'
