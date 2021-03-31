@@ -12,6 +12,14 @@ search {
 # Cache
 cache.job = 10 minutes
 
+# Jobs
+job {
+  timeout = 30 minutes
+  runners = [docker, process]
+  directory = "/tmp/cortex-jobs"
+  dockerDirectory = "/tmp/cortex-jobs"
+}
+
 # Authentication
 auth {
   provider = [
