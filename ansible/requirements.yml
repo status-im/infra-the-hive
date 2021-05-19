@@ -4,19 +4,14 @@
   version: 3043c998cbc92a634a71dc48363b3e2525696d26
   scm: git
 
-- name: origin-cert
+- name: origin-certs
   src: git@github.com:status-im/infra-role-origin-certs.git
   version: f7dcb7e1944d2ec0655bf8e7ce6f45a1317b65b9
   scm: git
 
-- name: infra-role-tinc
-  src: git@github.com:status-im/infra-role-tinc.git
-  version: bca648485def8e7a34ed5403bbaf403a2537279a
-  scm: git
-
 - name: infra-role-bootstrap
   src: git@github.com:status-im/infra-role-bootstrap.git
-  version: 244ed6a740d6c20250024de9ae1a0232d71b1f57
+  version: 4dfd3e0b32a93e1f07a73c6794684bae21f2e556
   scm: git
 
 - name: consul-service
@@ -46,15 +41,15 @@
 
 - name: cassandra
   src: git@github.com:status-im/infra-role-cassandra.git
-  version: f29d5bb1680c5debc40550462a059791c5bf50a3
+  version: da40e127edd1f57b80ed0ec51e05dafae8af3cc4
   scm: git
 
 - name: elasticsearch
   src: git@github.com:status-im/infra-role-elasticsearch.git
-  version: 4c77212cd98596e85f786113e70d6358935ba5e7
+  version: c82cbc9fbb24b52814b52f1c6ecf95f473d8838a
   scm: git
 
 - name: elasticsearch-hq
   src: git@github.com:status-im/infra-role-elasticsearch-hq.git
-  version: 051a3bf232904c1845ac58d0ceff3f3cff90a832
+  version: a92df1ac36c9a8e86fabefb54e24fe33d572ce10
   scm: git
