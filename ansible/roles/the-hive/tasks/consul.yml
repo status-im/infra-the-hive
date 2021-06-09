@@ -7,7 +7,7 @@
       - name: '{{ the_hive_service_name }}'
         tags: ['thehive', 'incidents', 'security']
         port: '{{ the_hive_port }}'
-        address: '{{ ansible_local.tinc.vpn_ip }}'
+        address: '{{ ansible_local.wireguard.vpn_ip }}'
         checks:
           - id: '{{ the_hive_service_name }}-health'
             name: Cassandra Healthcheck

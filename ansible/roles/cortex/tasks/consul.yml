@@ -8,7 +8,7 @@
       - name: 'the-hive-{{ cortex_service_name }}'
         tags: ['cortex', 'incidents', 'security']
         port: '{{ cortex_port }}'
-        address: '{{ ansible_local.tinc.vpn_ip }}'
+        address: '{{ ansible_local.wireguard.vpn_ip }}'
         checks:
           - id: '{{ cortex_service_name }}-health'
             name: Cassandra Healthcheck
