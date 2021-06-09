@@ -7,18 +7,18 @@ cortex_domain: 'cortex.status.im'
 cortex_port: 9001
 
 # Super Admin
-cortex_admin_user: 'admin'
-cortex_admin_pass: '{{ lookup("passwordstore", "services/TheHive-Cortex/admin-pass") }}'
+cortex_admin_user: '{{ lookup("bitwarden", "the-hive/cortex/admin", field="username") }}'
+cortex_admin_pass: '{{ lookup("bitwarden", "the-hive/cortex/admin", field="password") }}'
 # TheHive API Access
-cortex_the_hive_user: 'thehive'
-cortex_the_hive_pass: '{{ lookup("passwordstore", "services/TheHive-Cortex/thehive-pass") }}'
+cortex_the_hive_user: '{{ lookup("bitwarden", "the-hive/cortex/api", field="username") }}'
+cortex_the_hive_pass: '{{ lookup("bitwarden", "the-hive/cortex/api", field="password") }}'
 
 # Paths
 cortex_conf_path: '/data/cortex/conf'
 cortex_logs_path: '/data/cortex/logs'
 
 # Cortex application secret
-cortex_http_secret: '{{ lookup("passwordstore", "services/TheHive-Cortex/App/http-secret") }}'
+cortex_http_secret: '{{ lookup("bitwarden", "the-hive/cortex/app", field="http-secret") }}'
 
 # ElasticSearch cluster
 cortex_search_cluster_name: 'cortex'
@@ -29,15 +29,15 @@ cortex_search_nodes: |
     | list }}
 
 # GitHub OAuth details
-cortex_oauth_client_id: '{{ lookup("passwordstore", "services/TheHive-Cortex/OAuth/client-id") }}'
-cortex_oauth_client_secret: '{{ lookup("passwordstore", "services/TheHive-Cortex/OAuth/client-secret") }}'
+cortex_oauth_client_id: '{{ lookup("bitwarden", "the-hive/cortex/oauth", field="id") }}'
+cortex_oauth_client_secret: '{{ lookup("bitwarden", "the-hive/cortex/oauth", field="secret") }}'
 
 # The Hive ---------------------------------------------------------------------
 the_hive_domain: 'hive.status.im'
 the_hive_port: 9000
 
 # TheHive application secret
-the_hive_app_http_secret: '{{ lookup("passwordstore", "services/TheHive/App/http-secret") }}'
+the_hive_app_http_secret: '{{ lookup("bitwarden", "the-hive/app", field="http-secret") }}'
 
 # Paths
 the_hive_conf_path: '/data/thehive/conf'
@@ -51,13 +51,13 @@ the_hive_cortex_user: '{{ cortex_the_hive_user }}'
 the_hive_cortex_pass: '{{ cortex_the_hive_pass }}'
 
 # GitHub OAuth
-the_hive_oauth_client_id: '{{ lookup("passwordstore", "services/TheHive/OAuth/client-id") }}'
-the_hive_oauth_client_secret: '{{ lookup("passwordstore", "services/TheHive/OAuth/client-secret") }}'
+the_hive_oauth_client_id: '{{ lookup("bitwarden", "the-hive/oauth", field="id") }}'
+the_hive_oauth_client_secret: '{{ lookup("bitwarden", "the-hive/oauth", field="secret") }}'
 the_hive_oauth_org_name: 'status-im'
 
 # Cassandra auth
-the_hive_db_user: '{{ lookup("passwordstore", "services/TheHive/Cassandra/user") }}'
-the_hive_db_pass: '{{ lookup("passwordstore", "services/TheHive/Cassandra/pass") }}'
+the_hive_db_user: '{{ lookup("bitwarden", "the-hive/cassandra", field="username") }}'
+the_hive_db_pass: '{{ lookup("bitwarden", "the-hive/cassandra", field="password") }}'
 
 # Fetched in pre_tasks
 the_hive_db_hosts: |

@@ -11,8 +11,8 @@ cassandra_data_dir: '/data/cassandra'
 cassandra_rpc_address: '{{ ansible_local.wireguard.vpn_ip }}'
 cassandra_listen_address: '{{ ansible_local.wireguard.vpn_ip }}'
 cassandra_db_users:
-  - user: '{{ lookup("passwordstore", "services/TheHive/Cassandra/user") }}'
-    pass: '{{ lookup("passwordstore", "services/TheHive/Cassandra/pass") }}'
+  - user: '{{ lookup("bitwarden", "the-hive/cassandra", field="username") }}'
+    pass: '{{ lookup("bitwarden", "the-hive/cassandra", field="password") }}'
 
 # ElasticSearch Cluster
 es_cluster_name: 'cortex'
@@ -53,9 +53,9 @@ oauth_upstream_cont: '{{ es_hq_cont_name }}'
 oauth_upstream_port: '{{ es_hq_cont_port }}'
 oauth_public_port: 443
 oauth_local_port: 8090
-oauth_cookie_secret: '{{ lookup("passwordstore", "services/cookie-secret") }}'
-oauth_id: '{{ lookup("passwordstore", "services/TheHive/ElasticSearch/HQ/oauth-id") }}'
-oauth_secret: '{{ lookup("passwordstore", "services/TheHive/ElasticSearch/HQ/oauth-secret") }}'
+oauth_cookie_secret: '{{ lookup("bitwarden", "cookie-secret", field="secret") }}'
+oauth_id: '{{ lookup("bitwarden", "the-hive/elasticSearch/oauth", field="id") }}'
+oauth_secret: '{{ lookup("bitwarden", "the-hive/elasticSearch/oauth", field="secret") }}'
 
 # Proxy for ES HQ
 nginx_sites:

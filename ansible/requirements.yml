@@ -11,7 +11,7 @@
 
 - name: infra-role-bootstrap
   src: git@github.com:status-im/infra-role-bootstrap.git
-  version: 4dfd3e0b32a93e1f07a73c6794684bae21f2e556
+  version: 0aca5b6927373c04b9713408e9d6b9284a906d75
   scm: git
 
 - name: consul-service
@@ -41,12 +41,12 @@
 
 - name: cassandra
   src: git@github.com:status-im/infra-role-cassandra.git
-  version: da40e127edd1f57b80ed0ec51e05dafae8af3cc4
+  version: 71326b801813a980619007b89a9aa659056c39e8
   scm: git
 
 - name: elasticsearch
   src: git@github.com:status-im/infra-role-elasticsearch.git
-  version: c82cbc9fbb24b52814b52f1c6ecf95f473d8838a
+  version: 21a90e184941a708fd6c7386ac7ec2f365286f24
   scm: git
 
 - name: elasticsearch-hq
