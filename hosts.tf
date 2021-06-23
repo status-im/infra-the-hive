@@ -11,7 +11,7 @@ module "hive_master" {
   domain        = var.hosts_domain
 
   /* Application Web UI */
-  open_tcp_ports = [ "80", "443" ]
+  open_tcp_ports = ["80", "443"]
 }
 
 /* Backend storage */
@@ -27,5 +27,5 @@ module "hive_slave" {
   domain        = var.hosts_domain
 
   /* ElasticSearch HQ Web UI */
-  open_tcp_ports = [ "80", "443" ]
+  open_tcp_ports = ["80", "443"]
 }
