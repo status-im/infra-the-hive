@@ -20,3 +20,9 @@ slave-01.gc-us-central1-a.thehive.prod
 slave-02.gc-us-central1-a.thehive.prod
 slave-03.gc-us-central1-a.thehive.prod
 
+[thehive.prod]
+master-01.gc-us-central1-a.thehive.prod
+slave-01.gc-us-central1-a.thehive.prod
+slave-02.gc-us-central1-a.thehive.prod
+slave-03.gc-us-central1-a.thehive.prod
+
