@@ -13,13 +13,13 @@
   hosts: thehive-slave
   roles:
     - { role: swap-file,        tags: swap-file }
+    - { role: open-ports,       tags: open-ports }
     - { role: cassandra,        tags: cassandra }
     - { role: elasticsearch,    tags: elasticsearch }
     - { role: elasticsearch-hq, tags: elasticsearch-hq }
     - { role: oauth-proxy,      tags: oauth-proxy }
     - { role: origin-certs,     tags: origin-certs }
     - { role: nginx,            tags: nginx }
-    - { role: open-ports,       tags: open-ports }
 
 - name: Configure The Hive frontend
   hosts: thehive-master

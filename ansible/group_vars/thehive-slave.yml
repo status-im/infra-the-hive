@@ -1,15 +1,12 @@
 ---
-# Open Nginx Ports
-open_ports_default_comment: 'HTTP & HTTPS'
-open_ports_list:
-  - { port: 80, protocol: 'tcp' }
-  - { port: 443, protocol: 'tcp' }
-
 # Cassandra cluster for storing metrics
 cassandra_cluster_name: 'thp'
 cassandra_data_dir: '/data/cassandra'
 cassandra_rpc_address: '{{ ansible_local.wireguard.vpn_ip }}'
 cassandra_listen_address: '{{ ansible_local.wireguard.vpn_ip }}'
+cassandra_storage_port: 7000
+cassandra_native_port: 9042
+cassandra_exp_listen_port: 8080
 cassandra_db_users:
   - user: '{{ lookup("bitwarden", "the-hive/cassandra", field="username") }}'
     pass: '{{ lookup("bitwarden", "the-hive/cassandra", field="password") }}'
@@ -19,6 +16,7 @@ es_cluster_name: 'cortex'
 es_cont_name: elasticsearch
 es_api_port: 9200
 es_node_port: 9300
+es_metrics_cont_port: 9114
 
 # WARNING: This works only if playbook is ran for whole group
 es_master_nodes: |
@@ -56,6 +54,18 @@ oauth_local_port: 8090
 oauth_cookie_secret: '{{ lookup("bitwarden", "cookie-secret", field="secret") }}'
 oauth_id: '{{ lookup("bitwarden", "the-hive/elasticSearch/oauth", field="id") }}'
 oauth_secret: '{{ lookup("bitwarden", "the-hive/elasticSearch/oauth", field="secret") }}'
+
+# Open Nginx Ports
+open_ports_default_chain: 'VPN'
+open_ports_list:
+  - { port: 80,  chain: 'SERVICES', comment: 'ElasticSearchHQ' }
+  - { port: 443, chain: 'SERVICES', comment: 'ElasticSearchHQ' }
+  - { port: '{{ es_api_port }}',               ipset: 'thehive.prod', comment: 'ElasticSearch' }
+  - { port: '{{ es_node_port }}',              ipset: 'thehive.prod', comment: 'ElasticSearch' }
+  - { port: '{{ es_metrics_cont_port }}',      ipset: 'metrics.hq',   comment: 'ElasticSearch' }
+  - { port: '{{ cassandra_storage_port }}',    ipset: 'thehive.prod', comment: 'Cassandra' }
+  - { port: '{{ cassandra_native_port }}',     ipset: 'thehive.prod', comment: 'Cassandra' }
+  - { port: '{{ cassandra_exp_listen_port }}', ipset: 'metrics.hq',   comment: 'Cassandra' }
 
 # Proxy for ES HQ
 nginx_sites:
