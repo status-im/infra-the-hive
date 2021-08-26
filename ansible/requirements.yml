@@ -11,12 +11,12 @@
 
 - name: infra-role-bootstrap-linux
   src: git@github.com:status-im/infra-role-bootstrap-linux.git
-  version: 28027dad9fb64faea6061829b193e1e47a566ddc
+  version: 8a76a9e7bb644804116b3f6b4f80a6269347b21a
   scm: git
 
 - name: infra-role-wireguard
   src: git@github.com:status-im/infra-role-wireguard.git
-  version: d1120184a03566230a80a3aac9b86470f685de71
+  version: 49757eacbb3840d3c03ae159baec96b2c3492682
   scm: git
 
 - name: consul-service
@@ -36,12 +36,12 @@
 
 - name: open-ports
   src: git@github.com:status-im/infra-role-open-ports.git
-  version: f93c1cae2957bc38da04a1685f926bd84ef2292c
+  version: 24dc30dbdf85e6758cb6924074b2f7a0f4541524
   scm: git
 
 - name: oauth-proxy
   src: git@github.com:status-im/infra-role-oauth-proxy.git
-  version: 567b4cf59d97f87be78e77e62684214f6de03096
+  version: 05ef1410abe09db6df6e58ca14c556b7e2c383d7
   scm: git
 
 - name: cassandra
