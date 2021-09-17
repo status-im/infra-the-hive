@@ -1,4 +1,13 @@
 ---
+- name: Install Java OpenJRE
+  apt:
+    name: openjdk-11-jre-headless
+
+- name: Make sure we are using Java 11
+  alternatives:
+    name: 'java'
+    path: '/usr/lib/jvm/java-11-openjdk-amd64/bin/java'
+
 - name: Create service group
   group:
     name: '{{ the_hive_service_user }}'

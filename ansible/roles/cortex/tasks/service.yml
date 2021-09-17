@@ -6,6 +6,7 @@
     owner: '{{ cortex_service_user }}'
     group: 'adm'
     mode: 0750
+    recurse: true
 
 - name: Create systemd Unit file
   template:
