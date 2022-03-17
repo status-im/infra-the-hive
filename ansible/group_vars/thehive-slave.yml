@@ -46,18 +46,22 @@ es_jvm_min_heap: '{{ es_jvm_mem | int }}m'
 es_jvm_max_heap: '{{ es_jvm_mem | int }}m'
 
 # ElasticHQ connects to the local container
+es_hq_cont_name: '{{ es_service_name }}-hq'
+es_hq_cont_port: 5000
 es_hq_lb_cont_name: '{{ es_cont_name }}'
 
 # oauth access
+oauth_service_name: '{{ es_hq_cont_name }}-oauth'
+oauth_service_path: '{{ es_service_path }}/oauth'
 oauth_domain: 'thehive-es.infra.status.im'
-oauth_cont_name: '{{ es_hq_cont_name }}-oauth'
-oauth_upstream_cont: '{{ es_hq_cont_name }}'
+oauth_cont_networks: ['{{ es_docker_network_name }}']
+oauth_upstream_addr: '{{ es_hq_cont_name }}'
 oauth_upstream_port: '{{ es_hq_cont_port }}'
-oauth_public_port: 443
-oauth_local_port: 8090
-oauth_cookie_secret: '{{ lookup("bitwarden", "cookie-secret", field="secret") }}'
-oauth_id: '{{ lookup("bitwarden", "the-hive/elasticSearch/oauth", field="id") }}'
-oauth_secret: '{{ lookup("bitwarden", "the-hive/elasticSearch/oauth", field="secret") }}'
+oauth_local_port: 4180
+oauth_provider: 'github'
+oauth_id: '{{ lookup("bitwarden", "the-hive/elasticsearch/oauth", field="id") }}'
+oauth_secret: '{{ lookup("bitwarden", "the-hive/elasticsearch/oauth", field="secret") }}'
+oauth_cookie_secret: '{{ lookup("bitwarden", "the-hive/elasticsearch/oauth", field="cookie-secret") }}'
 
 # Open Nginx Ports
 open_ports_default_chain: 'VPN'
