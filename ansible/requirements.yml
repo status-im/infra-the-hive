@@ -11,12 +11,12 @@
 
 - name: infra-role-bootstrap-linux
   src: git@github.com:status-im/infra-role-bootstrap-linux.git
-  version: 0125727cae15f3dacf9e12ff0dcd13d891961463
+  version: 7280600c2c6cf532fdbbbb31481fdb068dd0573e
   scm: git
 
 - name: infra-role-wireguard
   src: git@github.com:status-im/infra-role-wireguard.git
-  version: 6cc6472e32b6dc53d7d854ab5a34d554451bec15
+  version: b711bbabd2dc3d9ce8b1c3a6e5bc785901db9d09
   scm: git
 
 - name: consul-service
@@ -26,7 +26,7 @@
 
 - name: systemd-timer
   src: git@github.com:status-im/infra-role-systemd-timer.git
-  version: 827033833eaf994d3b6f6ac1b555b90fdf1dd467
+  version: 49c37e1df8feb4d7938b3cc2ffc59f6dfed10231
   scm: git
 
 - name: swap-file
@@ -46,15 +46,10 @@
 
 - name: cassandra
   src: git@github.com:status-im/infra-role-cassandra.git
-  version: 71326b801813a980619007b89a9aa659056c39e8
+  version: df1d5ea174189095962ea46dc198eace4c5243e8
   scm: git
 
 - name: elasticsearch
   src: git@github.com:status-im/infra-role-elasticsearch.git
-  version: 47d5b38ddb22437ca0a93e060e67f46baca66293
-  scm: git
-
-- name: elasticsearch-hq
-  src: git@github.com:status-im/infra-role-elasticsearch-hq.git
-  version: 15df93e6c6394cfa71b5e8147f74987217171e99
+  version: 18503666d0ec23b0f03328575531cd8ce8dce9db
   scm: git
