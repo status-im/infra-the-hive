@@ -11,7 +11,7 @@
 
 - name: infra-role-bootstrap-linux
   src: git@github.com:status-im/infra-role-bootstrap-linux.git
-  version: 7280600c2c6cf532fdbbbb31481fdb068dd0573e
+  version: e7bc4c0145ca98d0bbb5e986fd9b1ebf98a4535c
   scm: git
 
 - name: infra-role-wireguard
@@ -21,12 +21,12 @@
 
 - name: consul-service
   src: git@github.com:status-im/infra-role-consul-service.git
-  version: 7ee51839e6a032e6ca27dfb00951e897b5385609
+  version: 0cddfb4dd696e759a0a95c4753e7b95aeedc4242
   scm: git
 
 - name: systemd-timer
   src: git@github.com:status-im/infra-role-systemd-timer.git
-  version: 49c37e1df8feb4d7938b3cc2ffc59f6dfed10231
+  version: 4ad0a9bfb57fcc1c1e7322c2a2293e726edb98f7
   scm: git
 
 - name: swap-file
@@ -39,11 +39,6 @@
   version: 24dc30dbdf85e6758cb6924074b2f7a0f4541524
   scm: git
 
-- name: oauth-proxy
-  src: git@github.com:status-im/infra-role-oauth-proxy.git
-  version: 4dd42c56a40b0fe002ccc810fe48b982de805d27
-  scm: git
-
 - name: cassandra
   src: git@github.com:status-im/infra-role-cassandra.git
   version: df1d5ea174189095962ea46dc198eace4c5243e8
@@ -51,5 +46,5 @@
 
 - name: elasticsearch
   src: git@github.com:status-im/infra-role-elasticsearch.git
-  version: 18503666d0ec23b0f03328575531cd8ce8dce9db
+  version: b74ce144da1ebb90fc2ff99288e8d7843839a964
   scm: git

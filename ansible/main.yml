@@ -16,9 +16,6 @@
     - { role: open-ports,       tags: open-ports }
     - { role: cassandra,        tags: cassandra }
     - { role: elasticsearch,    tags: elasticsearch }
-    - { role: oauth-proxy,      tags: oauth-proxy }
-    - { role: origin-certs,     tags: origin-certs }
-    - { role: nginx,            tags: nginx }
 
 - name: Configure The Hive frontend
   hosts: thehive-master
