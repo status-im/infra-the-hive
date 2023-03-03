@@ -1,3 +1,5 @@
+# :warning: This is a no longer used legacy repository.
+
 # Description
 
 [The Hive](https://thehive-project.org/) clusters configuration.
